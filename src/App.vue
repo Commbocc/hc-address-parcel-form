@@ -21,9 +21,9 @@ export default {
     addressMixin
   ],
   methods: {
-    search (searchInput) {
+    search (input) {
       this.setFormIsSearching(true)
-      this.findAddressAndParcel(searchInput).then(() => {
+      this.findAddressAndParcel({input, returnGeometry: true}).then(() => {
         this.setFormIsSearching(false)
       }).catch(err => {
         this.setFormIsSearching(false)

@@ -13,9 +13,9 @@ export default {
     parcel: null
   },
   actions: {
-    findAddressAndParcel ({dispatch}, input) {
+    findAddressAndParcel ({dispatch}, {input, returnGeometry = false}) {
       return dispatch('findAddress', input).then(() => {
-        return dispatch('fetchParcel')
+        return dispatch('fetchParcel', returnGeometry)
       })
     },
     findAddress ({commit}, input) {
