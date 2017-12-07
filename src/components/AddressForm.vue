@@ -1,8 +1,6 @@
 <template lang="html">
   <form @submit.prevent="search">
 
-    <!-- <details open><pre>{{ $store.state.address }}</pre></details> -->
-
     <div class="form-group">
 
       <div class="input-group input-group-lg">
