@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from 'vuex'
+import addressMixin from './mixins/addressMixin'
 import AddressForm from '@/components/AddressForm'
 
 export default {
@@ -17,6 +17,9 @@ export default {
   components: {
     AddressForm
   },
+  mixins: [
+    addressMixin
+  ],
   methods: {
     search (searchInput) {
       this.setFormIsSearching(true)
@@ -27,16 +30,7 @@ export default {
         // error handler
         console.error(err)
       })
-    },
-    ...mapActions([
-      'findAddressAndParcel'
-    ]),
-    ...mapMutations([
-      'setFormIsSearching'
-    ])
-  },
-  computed: mapState({
-    folio: state => state.address.parcel.folio
-  })
+    }
+  }
 }
 </script>
