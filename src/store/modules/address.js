@@ -19,6 +19,8 @@ export default {
       })
     },
     findAddress ({commit}, input) {
+      commit('setLocation', null)
+      commit('setParcel', null)
       return esriLoader.loadModules([
         'esri/tasks/Locator'
       ])
