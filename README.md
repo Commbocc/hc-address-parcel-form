@@ -1,6 +1,85 @@
-# hc-address-parcel-form
+# Hillsborough County Address/Parcel Form
 
 > A Vue.js project
+
+* [Vue](https://vuejs.org/)
+* [Vuex](https://vuex.vuejs.org/en/)
+
+## Basic Use
+
+```bash
+npm install --save https://github.com/Commbocc/hc-address-parcel-form
+```
+
+```js
+// store/index.js
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+import address from 'hc-address-parcel-form/src/store/modules/address'
+
+Vue.use(Vuex)
+
+export default new Vuex.Store({
+  modules: {
+    address
+  }
+})
+```
+
+```js
+// mixins/addressMixin.js
+import { mapState, mapActions, mapMutations } from 'vuex'
+
+export default {
+  methods: {
+    ...mapActions([
+      'findAddressAndParcel'
+    ]),
+    ...mapMutations([
+      'setFormIsSearching'
+    ])
+  },
+  computed: mapState({
+    folio: state => state.address.parcel.folio
+  })
+}
+```
+
+```vue
+<!-- App.vue -->
+<template>
+  <div>
+    <div is="AddressForm" v-on:search="search"></div>
+  </div>
+</template>
+
+<script>
+import addressMixin from './mixins/addressMixin'
+import AddressForm from 'hc-address-parcel-form/src/components/AddressForm'
+
+export default {
+  components: {
+    AddressForm
+  },
+  mixins: [addressMixin],
+  methods: {
+    search (input) {
+      this.setFormIsSearching(true)
+      this.findAddressAndParcel({input, returnGeometry: true}).then(() => {
+        // do something here
+        console.log(this.folio)
+        this.setFormIsSearching(false)
+      }).catch(err => {
+        this.setFormIsSearching(false)
+        // error handler
+        console.error(err)
+      })
+    }
+  }
+}
+</script>
+```
 
 ## Build Setup
 
