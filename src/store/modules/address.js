@@ -2,8 +2,9 @@ import * as esriLoader from 'esri-loader'
 import Parcel from '../models/parcel'
 
 // const esriGeocoderUrl = 'http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer'
-const esriGeocoderUrl = 'https://maps.hillsboroughcounty.org/arcgis/rest/services/Geocoding/DBO_composite_address_locator/GeocodeServer'
-const esriWkid = 102100
+// const esriGeocoderUrl = 'https://maps.hillsboroughcounty.org/arcgis/rest/services/Geocoding/DBO_composite_address_locator/GeocodeServer'
+const esriGeocoderUrl = 'https://maps.hillsboroughcounty.org/arcgis/rest/services/Geocoding/Composite_Address_Locator_WebApps/GeocodeServer'
+const esriWkid = 102659
 
 // vuex module
 export default {
