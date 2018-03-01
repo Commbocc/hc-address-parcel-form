@@ -66,7 +66,7 @@ export default {
   methods: {
     search (input) {
       this.setFormIsSearching(true)
-      this.findAddressAndParcel({input, returnGeometry: true}).then(() => {
+      this.findAddressAndParcel(true).then(() => {
         // do something here
         console.log(this.folio)
         this.setFormIsSearching(false)
