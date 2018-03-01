@@ -23,7 +23,7 @@ export default {
   methods: {
     search (input) {
       this.setFormIsSearching(true)
-      this.findAddressAndParcel({input, returnGeometry: true}).then(() => {
+      this.findAddressAndParcel(true).then(() => {
         this.setFormIsSearching(false)
       }).catch(err => {
         this.setFormIsSearching(false)

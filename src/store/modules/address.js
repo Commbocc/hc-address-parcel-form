@@ -8,17 +8,18 @@ const esriWkid = 102100
 // vuex module
 export default {
   state: {
+    input: null,
     searching: false,
     location: null,
     parcel: null
   },
   actions: {
-    findAddressAndParcel ({dispatch}, {input, returnGeometry = false}) {
-      return dispatch('findAddress', input).then(() => {
+    findAddressAndParcel ({dispatch}, returnGeometry = false) {
+      return dispatch('findAddress').then(() => {
         return dispatch('fetchParcel', returnGeometry)
       })
     },
-    findAddress ({commit}, input) {
+    findAddress ({state, commit}) {
       commit('setLocation', null)
       commit('setParcel', null)
       return esriLoader.loadModules([
@@ -31,7 +32,7 @@ export default {
         })
 
         return hcLocator.addressToLocations({
-          address: {SingleLine: input},
+          address: {SingleLine: state.input},
           maxLocations: 1
         })
         .then(response => {
@@ -70,6 +71,9 @@ export default {
     }
   },
   mutations: {
+    setInput (state, data) {
+      state.input = data
+    },
     setLocation (state, data) {
       state.location = data
     },

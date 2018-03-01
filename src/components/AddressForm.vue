@@ -24,21 +24,29 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'address-form',
   data () {
     return {
-      input: '',
       placeholder: 'Your Street Address...',
       helpText: null
     }
   },
   computed: {
     ...mapState({
+      addressInput: state => state.address.input,
       searching: state => state.address.searching
     }),
+    input: {
+      get () {
+        return this.addressInput
+      },
+      set (value) {
+        this.setInput(value)
+      }
+    },
     btnText () {
       // return (this.searching) ? 'Loading' : 'Find'
       return 'Find'
@@ -51,15 +59,10 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['setInput']),
     search () {
       this.$emit('search', this.input)
     }
   }
 }
 </script>
-
-<style scope>
-.btn {
-  white-space: nowrap;
-}
-</style>
