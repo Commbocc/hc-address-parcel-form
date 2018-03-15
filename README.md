@@ -4,11 +4,14 @@
 
 ## Installation
 
+Install in browser or via NPM.
+
 ### CDN (Browser)
 
 ```html
 <div id="app">
   <form is="HcAddressParcelForm" @submit="formSearch" @error="formError"></form>
+  <pre>{{ formResult }}</pre>
 </div>
 
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -46,9 +49,9 @@ Example [Single File Component](https://vuejs.org/v2/guide/single-file-component
 ```html
 <!-- App.vue -->
 <template>
-  <section>
+  <main>
     <form is="HcAddressParcelForm" @submit="formSearch" @error="formError"></form>
-  </section>
+  </main>
 </template>
 
 <script>
@@ -74,8 +77,7 @@ The `HcAddressParcelForm` component accepts the following properties as options:
 The default values are shown below:
 
 ```html
-<form
-is="HcAddressParcelForm"
+<form is="HcAddressParcelForm"
 placeholder="Your Street Address..."
 :return-parcel-geometry="false"></form>
 ```
