@@ -7,11 +7,17 @@
   </head>
   <body>
 
-    <div id="app">
-      <form is="HcAddressParcelForm" @submit="formSearch" @error="formError"></form>
+    <section class="py-5">
+      <div class="container">
 
-      <pre class="bg-dark text-light p-2">{{ formResult }}</pre>
-    </div>
+        <div id="app">
+          <form is="HcAddressParcelForm" @submit="formSearch" @error="formError"></form>
+          <pre class="bg-dark text-light p-2">{{ formResult }}</pre>
+        </div>
+
+      </div>
+    </section>
+
 
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <!-- sets HcAddressParcelForm -->
