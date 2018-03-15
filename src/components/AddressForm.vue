@@ -1,11 +1,12 @@
 <template lang="html">
-  <form @submit.prevent="search">
+  <form @submit.prevent="submitForm">
 
     <div class="form-group">
-
       <div class="input-group input-group-lg">
-        <input class="form-control" v-model="input" :placeholder="placeholder" autocomplete="off" required>
-        <span class="input-group-btn">
+
+        <input class="form-control" v-model="inputAddress" :placeholder="placeholder" autocomplete="off" required>
+
+        <span class="input-group-append">
           <button class="btn text-white" :class="btnClass" type="submit">
             <i :class="btnIcon"></i>
             <span class="d-none d-sm-inline-block">
@@ -13,55 +14,58 @@
             </span>
           </button>
         </span>
+
       </div>
-
-      <small v-if="helpText" class="form-text text-muted">
-        {{ helpText }}
-      </small>
-
     </div>
+
   </form>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import FormResult from '../models/FormResult'
 
 export default {
   name: 'address-form',
   data () {
     return {
-      placeholder: 'Your Street Address...',
-      helpText: null
-    }
-  },
-  computed: {
-    ...mapState({
-      addressInput: state => state.address.input,
-      searching: state => state.address.searching
-    }),
-    input: {
-      get () {
-        return this.addressInput
-      },
-      set (value) {
-        this.setInput(value)
-      }
-    },
-    btnText () {
-      // return (this.searching) ? 'Loading' : 'Find'
-      return 'Find'
-    },
-    btnClass () {
-      return (this.searching) ? 'btn-warning' : 'btn-secondary'
-    },
-    btnIcon () {
-      return (this.searching) ? 'fa fa-fw fa-spinner fa-spin' : 'fa fa-fw fa-search'
+      inputAddress: '',
+      isSearching: false
     }
   },
   methods: {
-    ...mapMutations(['setInput']),
-    search () {
-      this.$emit('search', this.input)
+    submitForm () {
+      this.isSearching = true
+      var result = new FormResult(this.inputAddress)
+      result.findAddressLocation().then(() => {
+        return result.findParcel(this.returnParcelGeometry)
+      }).catch(err => {
+        this.$emit('error', err)
+      }).then(() => {
+        this.$emit('submit', result)
+        this.isSearching = false
+      })
+    }
+  },
+  props: {
+    placeholder: {
+      type: String,
+      default: 'Your Street Address...'
+    },
+    returnParcelGeometry: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    btnText () {
+      // return (this.isSearching) ? 'Loading' : 'Find'
+      return 'Find'
+    },
+    btnClass () {
+      return (this.isSearching) ? 'btn-warning' : 'btn-secondary'
+    },
+    btnIcon () {
+      return (this.isSearching) ? 'fa fa-fw fa-spinner fa-spin' : 'fa fa-fw fa-search'
     }
   }
 }
