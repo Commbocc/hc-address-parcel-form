@@ -18,25 +18,27 @@ Install in browser or via NPM.
 <!-- set HcAddressParcelForm vue component -->
 <script src="https://commbocc.github.io/hc-address-parcel-form/dist/build.var.js"></script>
 <script type="text/javascript">
+'use strict';
+
 var app = new Vue({
   el: '#app',
   components: {
-    HcAddressParcelForm
+    HcAddressParcelForm: HcAddressParcelForm
   },
-  data () {
+  data: function data() {
     return {
       formResult: {}
-    }
+    };
   },
   methods: {
-    formSearch (result) {
-      this.formResult = result
+    formSearch: function formSearch(result) {
+      this.formResult = result;
     },
-    formError (err) {
-      console.error(err)
+    formError: function formError(err) {
+      console.error(err);
     }
   }
-})
+});
 </script>
 ```
 

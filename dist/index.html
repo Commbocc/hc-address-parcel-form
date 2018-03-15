@@ -23,25 +23,27 @@
     <!-- sets HcAddressParcelForm -->
     <script src="build.var.js"></script>
     <script type="text/javascript">
-      var app = new Vue({
-        el: '#app',
-        components: {
-          HcAddressParcelForm
+    'use strict';
+
+    var app = new Vue({
+      el: '#app',
+      components: {
+        HcAddressParcelForm: HcAddressParcelForm
+      },
+      data: function data() {
+        return {
+          formResult: {}
+        };
+      },
+      methods: {
+        formSearch: function formSearch(result) {
+          this.formResult = result;
         },
-        data () {
-          return {
-            formResult: {}
-          }
-        },
-        methods: {
-          formSearch (result) {
-            this.formResult = result
-          },
-          formError (err) {
-            console.error(err)
-          }
+        formError: function formError(err) {
+          console.error(err);
         }
-      })
+      }
+    });
     </script>
 
   </body>
