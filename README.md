@@ -71,7 +71,7 @@ The `HcAddressParcelForm` component accepts the following properties as options:
 * `placeholder` String
 * `:return-parcel-geometry` Boolean
 
-The default options are shown below:
+The default values are shown below:
 
 ```html
 <form
