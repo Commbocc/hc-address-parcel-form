@@ -14,9 +14,13 @@ Install in browser or via NPM.
   <pre>{{ formResult }}</pre>
 </div>
 
+<!-- include babel-polyfill for IE11 Promise support -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
+<!-- include Vue -->
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
-<!-- set HcAddressParcelForm vue component -->
+<!-- set HcAddressParcelForm Vue component -->
 <script src="https://commbocc.github.io/hc-address-parcel-form/dist/build.var.js"></script>
+
 <script type="text/javascript">
 'use strict';
 
