@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>HC Address Parcel Form</title>
+    <link rel="stylesheet" href="https://commbocc.github.io/html-wrapper/static/css/app.css">
+  </head>
+  <body>
+
+    <div id="app">
+      <form is="HcAddressParcelForm" @submit="formSearch" @error="formError"></form>
+
+      <pre class="bg-dark text-light p-2">{{ formResult }}</pre>
+    </div>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- sets HcAddressParcelForm -->
+    <script src="build.var.js"></script>
+    <script type="text/javascript">
+      var app = new Vue({
+        el: '#app',
+        components: {
+          HcAddressParcelForm
+        },
+        data () {
+          return {
+            formResult: {}
+          }
+        },
+        methods: {
+          formSearch (result) {
+            this.formResult = result
+          },
+          formError (err) {
+            console.error(err)
+          }
+        }
+      })
+    </script>
+
+  </body>
+</html>
