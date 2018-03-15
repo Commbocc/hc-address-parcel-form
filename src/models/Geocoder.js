@@ -13,16 +13,21 @@ export default class Geocoder {
     }
   }
 
-  // returns promise
-  static findAddressLocation (inputAddress) {
+  // esri Locator
+  static initLocator () {
     return esriLoader.loadModules([
       'esri/tasks/Locator'
     ]).then(([Locator]) => {
-      var locator = new Locator({
+      return new Locator({
         url: Geocoder.esri.url,
         outSpatialReference: {wkid: Geocoder.esri.wkid}
       })
+    })
+  }
 
+  // returns promise
+  static findAddressLocation (inputAddress) {
+    return Geocoder.initLocator().then(locator => {
       return locator.addressToLocations({
         address: {SingleLine: inputAddress},
         maxLocations: 1
@@ -32,6 +37,20 @@ export default class Geocoder {
         } else {
           throw new Error('That address was not found in our records.')
         }
+      })
+    })
+  }
+
+  // returns promise
+  static suggestLocations (inputAddress) {
+    return Geocoder.initLocator().then(locator => {
+      return locator.suggestLocations({
+        text: inputAddress
+      }).then(response => {
+        return response
+      }).catch(err => {
+        console.error(err)
+        return []
       })
     })
   }
