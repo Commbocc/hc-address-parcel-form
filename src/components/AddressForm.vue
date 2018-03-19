@@ -44,16 +44,9 @@ export default {
   methods: {
     submitForm (e) {
       this.isSearching = true
-      var result = new FormResult(this.inputAddress)
-      result.findAddressLocation().then(() => {
-        return result.findParcel(this.returnParcelGeometry)
-      }).catch(err => {
-        this.$emit('error', err)
-      }).then(() => {
-        this.$emit('submit', result)
-        this.suggestions = []
-        this.isSearching = false
-      })
+      this.suggestions = []
+      this.$emit('submit', new FormResult(this.inputAddress, this.returnParcelGeometry))
+      this.isSearching = false
     },
     suggestLocations (e) {
       if (this.inputAddress.length >= 3) {

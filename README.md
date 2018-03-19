@@ -10,7 +10,7 @@ Install in browser or via NPM.
 
 ```html
 <div id="app">
-  <form is="HcAddressParcelForm" @submit="formSearch" @error="formError"></form>
+  <form is="HcAddressParcelForm" @submit="formSearch"></form>
   <pre>{{ formResult }}</pre>
 </div>
 
@@ -35,11 +35,26 @@ var app = new Vue({
     };
   },
   methods: {
-    formSearch: function formSearch(result) {
-      this.formResult = result;
-    },
-    formError: function formError(err) {
-      console.error(err);
+    formSearch: function formSearch(promise) {
+      promise.then(result => {
+        this.formResult = result;
+        // result => {
+        //   "inputAddress": "601 E KENNEDY, TAMPA",
+        //   "locationData": {
+        //     "spatialReference": {
+        //       "latestWkid": 2237,
+        //       "wkid": 102659
+        //     },
+        //     "x": 509330.5265903396,
+        //     "y": 1314191.6308060843
+        //   },
+        //   "parcelData": {
+        //     "folio": "1935570000",
+        //     "address": "601 E KENNEDY BLVD",
+        //     "geometry": null
+        //   }
+        // }
+      });
     }
   }
 });
@@ -56,7 +71,7 @@ Example [Single File Component](https://vuejs.org/v2/guide/single-file-component
 <!-- App.vue -->
 <template>
   <main>
-    <form is="HcAddressParcelForm" @submit="formSearch" @error="formError"></form>
+    <form is="HcAddressParcelForm" @submit="formSearch"></form>
   </main>
 </template>
 

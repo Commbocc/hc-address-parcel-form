@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-    <form is="AddressForm" @submit="formSearch" @error="formError"></form>
+    <form is="AddressForm" @submit="formSearch"></form>
 
     <pre class="bg-dark text-light p-2">{{ formResult }}</pre>
 
@@ -22,11 +22,10 @@ export default {
     }
   },
   methods: {
-    formSearch (result) {
-      this.formResult = result
-    },
-    formError (err) {
-      console.error(err)
+    formSearch (promise) {
+      promise.then(result => {
+        this.formResult = result
+      })
     }
   }
 }
