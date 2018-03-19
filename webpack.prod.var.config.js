@@ -6,10 +6,10 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'build.cjs2.js',
-    // library: 'HcAddressParcelForm',
+    filename: 'build.var.js',
+    library: 'HcAddressParcelForm',
     libraryExport: 'default',
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'var'
   },
   module: {
     rules: [
