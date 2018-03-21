@@ -2,11 +2,14 @@ import Geocoder from './Geocoder'
 import Parcel from './Parcel'
 
 export default class FormResult {
-  // returns promise
   constructor (inputAddress, returnGeometry = false) {
     this.inputAddress = inputAddress
+
     this.locationData = null
     this.parcelData = null
+    this.errors = []
+
+    // returns promise
     return this.getResult(returnGeometry)
   }
 
@@ -17,6 +20,10 @@ export default class FormResult {
         this.parcelData = parcelData
         return this
       })
+    }).catch(err => {
+      this.errors.push(err)
+    }).then(() => {
+      return this
     })
   }
 }

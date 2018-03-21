@@ -25,6 +25,11 @@ export default {
     formSearch (promise) {
       promise.then(result => {
         this.formResult = result
+        this.formResult.errors.forEach(err => {
+          throw err
+        })
+      }).catch(err => {
+        console.error(err)
       })
     }
   }

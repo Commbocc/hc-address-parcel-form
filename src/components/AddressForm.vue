@@ -43,10 +43,8 @@ export default {
   },
   methods: {
     submitForm (e) {
-      // this.isSearching = true
       this.suggestions = []
       this.$emit('submit', new FormResult(this.inputAddress, this.returnParcelGeometry))
-      // this.isSearching = false
     },
     suggestLocations (e) {
       if (this.inputAddress.length >= 3) {
