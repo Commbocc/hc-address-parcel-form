@@ -52,8 +52,12 @@ var app = new Vue({
         //     "folio": "1935570000",
         //     "address": "601 E KENNEDY BLVD",
         //     "geometry": null
-        //   }
+        //   },
+        //   "errors": []
         // }
+        this.formResult.errors.forEach(err => {throw err;});
+      }).catch(err => {
+        console.error(err);
       });
     }
   }
