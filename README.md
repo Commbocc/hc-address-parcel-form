@@ -10,7 +10,7 @@ Install in browser or via NPM.
 
 ```html
 <div id="app">
-  <form is="HcAddressParcelForm" @submit="formSearch"></form>
+  <form is="HcAddressParcelForm" ref="addressForm" @submit="formSearch"></form>
   <pre>{{ formResult }}</pre>
 </div>
 
@@ -36,8 +36,10 @@ var app = new Vue({
   },
   methods: {
     formSearch: function formSearch(promise) {
-      promise.then(result => {
-        this.formResult = result;
+      var _this = this;
+      this.$refs.addressForm.isSearching = true;
+      promise.then(function (result) {
+        _this.formResult = result;
         // result => {
         //   "inputAddress": "601 E KENNEDY, TAMPA",
         //   "locationData": {
@@ -55,9 +57,13 @@ var app = new Vue({
         //   },
         //   "errors": []
         // }
-        this.formResult.errors.forEach(err => {throw err;});
-      }).catch(err => {
+        _this.formResult.errors.forEach(function (err) {
+          throw err;
+        });
+      }).catch(function (err) {
         console.error(err);
+      }).then(function () {
+        _this.$refs.addressForm.isSearching = false;
       });
     }
   }
