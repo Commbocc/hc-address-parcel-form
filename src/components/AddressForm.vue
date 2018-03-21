@@ -31,6 +31,7 @@
 <script>
 import FormResult from '../models/FormResult'
 import Geocoder from '../models/Geocoder'
+import debounce from 'lodash.debounce'
 
 export default {
   name: 'address-form',
@@ -46,13 +47,11 @@ export default {
       this.suggestions = []
       this.$emit('submit', new FormResult(this.inputAddress, this.returnParcelGeometry))
     },
-    suggestLocations (e) {
-      if (this.inputAddress.length >= 3) {
-        Geocoder.suggestLocations(this.inputAddress).then(suggestions => {
-          this.suggestions = suggestions
-        })
-      }
-    }
+    suggestLocations: debounce(function(e) {
+      Geocoder.suggestLocations(this.inputAddress).then(suggestions => {
+        this.suggestions = suggestions
+      })
+    }, 300)
   },
   props: {
     placeholder: {
