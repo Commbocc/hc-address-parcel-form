@@ -13,7 +13,7 @@
         </datalist>
 
         <!-- button -->
-        <span class="input-group-append">
+        <span class="input-group-append input-group-btn">
           <button class="btn text-white" :class="btnClass" type="submit">
             <i :class="btnIcon"></i>
             <span class="d-none d-sm-inline-block">
