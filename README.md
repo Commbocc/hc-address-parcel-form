@@ -10,7 +10,9 @@ Install in browser or via NPM.
 
 ```html
 <div id="app">
-  <form is="HcAddressParcelForm" ref="addressForm" @submit="formSearch"></form>
+  <form is="HcAddressParcelForm" ref="addressForm" @submit="formSearch">
+    <!-- Help Text -->
+  </form>
   <pre>{{ formResult }}</pre>
 </div>
 
