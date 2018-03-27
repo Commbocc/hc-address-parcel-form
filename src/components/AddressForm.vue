@@ -23,6 +23,10 @@
         </span>
 
       </div>
+
+      <div class="form-text text-muted">
+        <slot></slot>
+      </div>
     </div>
 
   </form>
