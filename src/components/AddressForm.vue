@@ -25,7 +25,21 @@
       </div>
 
       <div class="form-text text-muted">
-        <slot></slot>
+        <slot>
+          <details>
+            <summary>Having trouble with this field?</summary>
+            <ul>
+              <li>
+                Provide a street number and street name. <strong>Avoid</strong> using a street suffix (ex. street, st, circle, ave, etc.) in your search.
+                <ul>
+                  <li>601 e kennedy</li>
+                </ul>
+              </li>
+              <li>When available, use the suggested options displayed as you type.</li>
+              <li>Still experiencing problems? <a href="https://hcflgov.formstack.com/forms/website_feedback" target="_blank">Let us know</a>.</li>
+            </ul>
+          </details>
+        </slot>
       </div>
     </div>
 
