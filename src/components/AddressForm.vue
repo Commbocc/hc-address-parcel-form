@@ -5,7 +5,7 @@
       <div class="input-group input-group-lg">
 
         <!-- address input -->
-        <input list="suggestions" class="form-control" v-model="inputAddress" :placeholder="placeholder" autocomplete="off" required @keyup="suggestLocations">
+        <input list="suggestions" class="form-control data-hj-whitelist" v-model="inputAddress" :placeholder="placeholder" autocomplete="off" required @keyup="suggestLocations">
 
         <!-- suggestions -->
         <datalist id="suggestions">
