@@ -66,9 +66,11 @@ export default {
       this.$emit('submit', new FormResult(this.inputAddress, this.returnParcelGeometry))
     },
     suggestLocations: debounce(function(e) {
-      Geocoder.suggestLocations(this.inputAddress).then(suggestions => {
-        this.suggestions = suggestions
-      })
+      if (this.inputAddress.length) {
+        Geocoder.suggestLocations(this.inputAddress).then(suggestions => {
+          this.suggestions = suggestions
+        })
+      }
     }, 300)
   },
   props: {
