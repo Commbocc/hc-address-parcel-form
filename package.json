@@ -1,7 +1,7 @@
 {
   "name": "hc-address-parcel-form",
   "description": "A Vue.js project",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "author": "Kevin McCarthy <mccarthyk@hcflgov.net>",
   "license": "MIT",
   "private": true,
